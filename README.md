@@ -14,6 +14,25 @@
 
 Transmitting data from an to the ESVE Wallbox
 
+## Paramter Description
+Parameter | Description
+--------- | -----------
+vehicleState | Vehicle state (ready / detected / charging)
+evseState | EVSE State (active/not active)
+maxCurrent | Maximum Current depending on PP-limit and 
+actualCurrent | Actual configured current in A (e.g. 20A)
+actualPower | actual power consumption (when S0 meter is used)
+duration | charging duration in milliseconds
+alwaysActive | Always Active Mode enabled (true/false)
+lastActionUser | The user name of the user who performed the last action (activate/deactivate)
+lastActionUID | The UID of the user who performed the last action (activate/deactivate)
+energy | charged energy of the current charging process in kWh
+mileage | charged energy in km
+meterReading | actual meter reading in kWh
+currentP1 | actual current in A (phase 1)
+currentP2 | actual current in A (phase 2)
+currentP3 | actual current in A (phase 3)
+useMeter | energy meter is configured in EVSE-WiFi (true/false)
 
 ## Changelog
 
