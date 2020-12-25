@@ -1,0 +1,74 @@
+{
+    "common": {
+        "name": "esvewifi",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "esvewifi",
+        "titleLang": {
+            "en": "esvewifi",
+            "de": "esvewifi",
+            "ru": "Esvewifi",
+            "pt": "esvewifi",
+            "nl": "esvewifi",
+            "fr": "esvewifi",
+            "it": "esvewifi",
+            "es": "esvewifi",
+            "pl": "esvewifi",
+            "zh-cn": "esvewifi"
+        },
+        "desc": {
+            "en": "Transmitting data from an to the ESVE Wallbox",
+            "de": "Übertragen von Daten von einer zur ESVE Wallbox",
+            "ru": "Передача данных из ESVE Wallbox",
+            "pt": "Transmitindo dados de um para a ESVE Wallbox",
+            "nl": "Gegevens verzenden van een naar de ESVE-wallbox",
+            "fr": "Transmission de données depuis un vers la Wallbox ESVE",
+            "it": "Trasmissione di dati da un a ESVE Wallbox",
+            "es": "Transmisión de datos de un Wallbox a ESVE",
+            "pl": "Przesyłanie danych z do ESVE Wallbox",
+            "zh-cn": "将数据从传输到ESVE Wallbox"
+        },
+        "authors": [
+            "JFK344 <info@jfk.rocks>"
+        ],
+        "keywords": [
+            "ESVE"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "esvewifi.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/JFK344/ioBroker.esvewifi/master/admin/esvewifi.png",
+        "readme": "https://github.com/JFK344/ioBroker.esvewifi/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "iot-systems",
+        "compact": true,
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=1.4.2"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
