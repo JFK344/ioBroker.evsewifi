@@ -26,6 +26,18 @@ systemDictionary = {
         'pl': 'IP',
         'zh-cn': 'IP'
     },
+    'noLogsToShow': {
+        'en': 'Number of Logs to Show',
+        'de': 'Number of Logs to Show',
+        'ru': 'Number of Logs to Show',
+        'pt': 'Number of Logs to Show',
+        'nl': 'Number of Logs to Show',
+        'fr': 'Number of Logs to Show',
+        'it': 'Number of Logs to Show',
+        'es': 'Number of Logs to Show',
+        'pl': 'Number of Logs to Show',
+        'zh-cn': 'Number of Logs to Show'
+    },
     'refreshInterval': {
         'en': 'Refresh Interval [s]',
         'de': 'Refresh Interval [s]',

@@ -22,7 +22,7 @@ class Esvewifi extends utils.Adapter {
             name: 'esvewifi',
         });
         this.on('ready', this.onReady.bind(this));
-        //this.on('stateChange', this.onStateChange.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
         //this.main();
     }
@@ -36,9 +36,11 @@ class Esvewifi extends utils.Adapter {
         this.log.info('Refresh Interval: ' + this.config.refreshInterval);
         this.subscribeStates('*');
         const self = this;
-        var updateInterval = setInterval(function() {self.getParameters();}, (self.config.refreshInterval*1000));
+        var updateInterval = setInterval(function() {self.getParameters(); self.getLog();}, (self.config.refreshInterval*1000));
+        var paramtersFolderName = 'parameters.'
+        var logsFolderName = 'logs.'
 
-        await this.setObjectNotExistsAsync('MSG_Type', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'MSG_Type', {
             type: 'state',
             common: {
                 name: 'MSG_Type',
@@ -50,7 +52,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('vehicleState', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'vehicleState', {
             type: 'state',
             common: {
                 name: 'vehicleState',
@@ -62,7 +64,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('evseState', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'evseState', {
             type: 'state',
             common: {
                 name: 'evseState',
@@ -74,7 +76,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('maxCurrent', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'maxCurrent', {
             type: 'state',
             common: {
                 name: 'maxCurrent',
@@ -86,7 +88,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('actualCurrent', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'actualCurrent', {
             type: 'state',
             common: {
                 name: 'actualCurrent',
@@ -98,7 +100,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('actualPower', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'actualPower', {
             type: 'state',
             common: {
                 name: 'actualPower',
@@ -110,7 +112,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('duration', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'duration', {
             type: 'state',
             common: {
                 name: 'duration',
@@ -122,7 +124,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('alwaysActive', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'alwaysActive', {
             type: 'state',
             common: {
                 name: 'alwaysActive',
@@ -134,7 +136,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('lastActionUser', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'lastActionUser', {
             type: 'state',
             common: {
                 name: 'lastActionUser',
@@ -146,7 +148,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('lastActionUID', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'lastActionUID', {
             type: 'state',
             common: {
                 name: 'lastActionUID',
@@ -158,7 +160,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('energy', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'energy', {
             type: 'state',
             common: {
                 name: 'energy',
@@ -170,7 +172,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('mileage', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'mileage', {
             type: 'state',
             common: {
                 name: 'milage',
@@ -182,7 +184,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('meterReading', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'meterReading', {
             type: 'state',
             common: {
                 name: 'meterReading',
@@ -194,7 +196,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('currentP1', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'currentP1', {
             type: 'state',
             common: {
                 name: 'currentP1',
@@ -206,7 +208,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('currentP2', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'currentP2', {
             type: 'state',
             common: {
                 name: 'currentP2',
@@ -218,7 +220,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('currentP3', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'currentP3', {
             type: 'state',
             common: {
                 name: 'currentP3',
@@ -230,7 +232,7 @@ class Esvewifi extends utils.Adapter {
             native: {},
         });
 
-        await this.setObjectNotExistsAsync('useMeter', {
+        await this.setObjectNotExistsAsync(paramtersFolderName+'useMeter', {
             type: 'state',
             common: {
                 name: 'useMeter',
@@ -241,7 +243,59 @@ class Esvewifi extends utils.Adapter {
             },
             native: {},
         });
+
+        for(var c=0; c < this.config.noLogsToShow; c++){
+            await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c, {
+                type: 'state',
+                common: {
+                    name: 'Log_'+c,
+                    type: 'string',
+                    role: 'string',
+                    read: true,
+                    write: false,
+                },
+                native: {},
+            });
+        }
+
+        await this.setObjectNotExistsAsync('setCurrent', {
+            type: 'state',
+            common: {
+                name: 'setCurrent',
+                type: 'number',
+                role: 'number',
+                read: true,
+                write: true,
+            },
+            native: {},
+        });
+
+        await this.setObjectNotExistsAsync('setStatus', {
+            type: 'state',
+            common: {
+                name: 'setStatus',
+                type: 'string',
+                role: 'string',
+                read: true,
+                write: true,
+            },
+            native: {},
+        });
+
+        await this.setObjectNotExistsAsync('doReboot', {
+            type: 'state',
+            common: {
+                name: 'doReboot',
+                type: 'boolean',
+                role: 'button',
+                read: false,
+                write: true,
+            },
+            native: {},
+        });
     }
+
+
 
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
@@ -263,13 +317,101 @@ class Esvewifi extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            if(id == 'esvewifi.0.doReboot' && state.val == true){
+                this.doReboot();
+            }
+            if(id == 'esvewifi.0.setCurrent'){
+              this.setCurrent(state.val);
+            }
+            if(id == 'esvewifi.0.setStatus'){
+              if(state.val == 'true' || state.val == 'false'){
+                this.setStatus(state.val);
+              } else {
+                this.log.error('For "SetStatus" provide -> "true" or "false"')
+              }
+            }
         } else {
             this.log.debug(`state ${id} deleted`);
         }
     }
 
+    async doReboot(){
+      const url = 'http://' + this.config.ip + '/doReboot?reboot=true';
+      const self = this;
+      request({method: "GET", url}, function (error, response, result) {
+          if(!error && response.statusCode == 200){
+            if(response == 'S0_EVSE-WiFi is going to reboot now...'){
+              self.log.info("Rebooted ESVE-Wifi Module")
+            } else {
+              self.log.error("Could not performe doReboot()")
+            }
+          } else {
+            self.log.error("Check IP!")
+            self.stop();
+          }
+      })
+    }
+
+
+    async setStatus(status){
+      const url = 'http://' + this.config.ip + '/setStatus?active='+status;
+      const self = this;
+      request({method: "GET", url}, function (error, response, result) {
+          if(!error && response.statusCode == 200){
+            if(result == 'E2_could not process - wrong parameter or EVSE-WiFi runs in always active mode'){
+              self.log.error("ESVE Running in Always Active Mode");
+            } else {
+              self.log.error('Could not perform setStatus()')
+            }
+          }
+          else {
+            self.log.error("Check IP!")
+            self.stop();
+          }
+      })
+    }
+
+
+    async setCurrent(current){
+      const url = 'http://' + this.config.ip + '/setCurrent?current='+current;
+      const self = this;
+      request({method: "GET", url}, function (error, response, result) {
+          if(!error && response.statusCode == 200){
+            if(result == 'S0_set current to given value'){
+            } else {
+              self.log.error('Could not perform setCurrent()')
+            }
+          } else {
+            self.log.error("Check IP!")
+            self.stop();
+          }
+      })
+    }
+
+//noLogsToShow
+    async getLog(){
+      var logsFolderName = 'logs.'
+      const url = 'http://' + this.config.ip + '/getLog';
+      const self = this;
+      if (this.config.noLogsToShow != 0){
+        request({method: "GET", url}, function (error, response, result) {
+            if(!error && response.statusCode == 200){
+              var logObj = JSON.parse(result)
+              for(c=0; c < logObj.list.length(); c++){
+                if(c < self.config.noLogsToShow){
+                  self.setState(logsFolderName+'Log_'+c, logObj.list[c], true)
+                }
+              }
+              self.log.info('getLog returnded: ' + result)
+            } else {
+              self.log.error("Check IP!")
+              self.stop();
+            }
+        })
+      }
+    }
+
     async getParameters() {
-      //try {
           const url = 'http://' + this.config.ip + '/getParameters';
           this.log.debug(url);
           const self = this;
@@ -278,31 +420,29 @@ class Esvewifi extends utils.Adapter {
               if(!error && response.statusCode == 200){
                 self.log.debug("Parameter Message: " + result);
                 var parameterDataObj = JSON.parse(result)
-                self.setState('MSG_Type', parameterDataObj.type, true)
-                self.setState('vehicleState', parameterDataObj.list[0].vehicleState, true)
-                self.setState('evseState', parameterDataObj.list[0].evseState, true)
-                self.setState('maxCurrent', parameterDataObj.list[0].maxCurrent, true)
-                self.setState('actualCurrent', parameterDataObj.list[0].actualCurrent, true)
-                self.setState('actualPower', parameterDataObj.list[0].actualPower, true)
-                self.setState('duration', parameterDataObj.list[0].duration, true)
-                self.setState('alwaysActive', parameterDataObj.list[0].alwaysActive, true)
-                self.setState('lastActionUser', parameterDataObj.list[0].lastActionUser, true)
-                self.setState('lastActionUID', parameterDataObj.list[0].lastActionUID, true)
-                self.setState('energy', parameterDataObj.list[0].energy, true)
-                self.setState('mileage', parameterDataObj.list[0].mileage, true)
-                self.setState('meterReading', parameterDataObj.list[0].meterReading, true)
-                self.setState('currentP1', parameterDataObj.list[0].currentP1, true)
-                self.setState('currentP2', parameterDataObj.list[0].currentP2, true)
-                self.setState('currentP3', parameterDataObj.list[0].currentP3, true)
-                self.setState('useMeter', parameterDataObj.list[0].useMeter, true)
+                var paramtersFolderName = 'parameters.'
+                self.setState(paramtersFolderName+'MSG_Type', parameterDataObj.type, true)
+                self.setState(paramtersFolderName+'vehicleState', parameterDataObj.list[0].vehicleState, true)
+                self.setState(paramtersFolderName+'evseState', parameterDataObj.list[0].evseState, true)
+                self.setState(paramtersFolderName+'maxCurrent', parameterDataObj.list[0].maxCurrent, true)
+                self.setState(paramtersFolderName+'actualCurrent', parameterDataObj.list[0].actualCurrent, true)
+                self.setState(paramtersFolderName+'actualPower', parameterDataObj.list[0].actualPower, true)
+                self.setState(paramtersFolderName+'duration', parameterDataObj.list[0].duration, true)
+                self.setState(paramtersFolderName+'alwaysActive', parameterDataObj.list[0].alwaysActive, true)
+                self.setState(paramtersFolderName+'lastActionUser', parameterDataObj.list[0].lastActionUser, true)
+                self.setState(paramtersFolderName+'lastActionUID', parameterDataObj.list[0].lastActionUID, true)
+                self.setState(paramtersFolderName+'energy', parameterDataObj.list[0].energy, true)
+                self.setState(paramtersFolderName+'mileage', parameterDataObj.list[0].mileage, true)
+                self.setState(paramtersFolderName+'meterReading', parameterDataObj.list[0].meterReading, true)
+                self.setState(paramtersFolderName+'currentP1', parameterDataObj.list[0].currentP1, true)
+                self.setState(paramtersFolderName+'currentP2', parameterDataObj.list[0].currentP2, true)
+                self.setState(paramtersFolderName+'currentP3', parameterDataObj.list[0].currentP3, true)
+                self.setState(paramtersFolderName+'useMeter', parameterDataObj.list[0].useMeter, true)
               }
               else {
                 self.log.error("Check IP!")
                 self.stop();
-                //self.callback({ error: 1, message: {} });
               }
-
-              //self.stop();
           })
     }
 }
