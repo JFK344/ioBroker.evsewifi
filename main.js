@@ -31,7 +31,7 @@ class Esvewifi extends utils.Adapter {
      * Is called when databases are connected and adapter received configuration.
      */
     async onReady() {
-        this.log.info('ESVE Wifi Adapter Started!')
+        this.log.info('ESVE Wifi Adapter Started! Instance Number: ' + this.instance)
         this.log.info('ESVE IP: ' + this.config.ip);
         this.log.info('Refresh Interval: ' + this.config.refreshInterval);
         this.subscribeStates('*');
@@ -317,13 +317,13 @@ class Esvewifi extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-            if(id == 'esvewifi.0.doReboot' && state.val == true){
+            if(id == 'esvewifi.'+this.instance+'.doReboot' && state.val == true){
                 this.doReboot();
             }
-            if(id == 'esvewifi.0.setCurrent'){
+            if(id == 'esvewifi.'+this.instance+'.setCurrent'){
               this.setCurrent(state.val);
             }
-            if(id == 'esvewifi.0.setStatus'){
+            if(id == 'esvewifi.'+this.instance+'.setStatus'){
               if(state.val == 'true' || state.val == 'false'){
                 this.setStatus(state.val);
               } else {
