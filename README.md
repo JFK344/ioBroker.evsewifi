@@ -12,7 +12,9 @@
 
 ## esvewifi adapter for ioBroker
 
-Transmitting data from an to the ESVE Wallbox
+Transmitting data from an to the ESVE Wallbox.
+SimpleESVE-WiFi: https://github.com/CurtRod/SimpleEVSE-WiFi
+
 
 ## Paramter Description
 Parameter | Description
