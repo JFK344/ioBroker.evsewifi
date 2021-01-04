@@ -1,11 +1,8 @@
 {
   "name": "iobroker.esvewifi",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Transmitting data from an to the ESVE Wallbox",
-  "author": {
-    "name": "JFK344",
-    "email": "info@jfk.rocks"
-  },
+  "author": "JFK344 <info@jfk.rocks>",
   "homepage": "https://github.com/JFK344/ioBroker.esvewifi",
   "license": "MIT",
   "keywords": [
@@ -13,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JFK344/ioBroker.esvewifi"
+    "url": "git+https://github.com/JFK344/ioBroker.esvewifi.git"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.4.0"
@@ -50,5 +47,8 @@
   "bugs": {
     "url": "https://github.com/JFK344/ioBroker.esvewifi/issues"
   },
-  "readmeFilename": "README.md"
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }

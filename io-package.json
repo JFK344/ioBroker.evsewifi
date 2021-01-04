@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "esvewifi",
-        "version": "0.0.1",
+        "version": "1.0.0",
         "news": {
             "0.0.1": {
                 "en": "initial release",
@@ -45,7 +45,10 @@
             "JFK344 <info@jfk.rocks>"
         ],
         "keywords": [
-            "ESVE"
+            "ESVE",
+            "esve-wifi",
+            "e-mobility",
+            "electric-vehicles"
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
@@ -57,6 +60,8 @@
         "loglevel": "info",
         "mode": "daemon",
         "type": "iot-systems",
+        "connectionType": "local",
+        "dataSource": "poll",
         "compact": true,
         "materialize": true,
         "dependencies": [
