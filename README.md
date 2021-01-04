@@ -37,14 +37,16 @@ currentP3 | actual current in A (phase 3)
 useMeter | energy meter is configured in EVSE-WiFi (true/false)
 
 ## Changelog
+### 1.0.0
+* (JFK344) First release
 
 ### 0.0.1
 * (JFK344) initial release
 
 ## License
-MIT License
+Copyright (c) 2021 JFK344 <info@jfk.rocks>
 
-Copyright (c) 2020 JFK344 <info@jfk.rocks>
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -63,3 +65,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Copyright (c) 2021 JFK344 <info@jfk.rocks>
