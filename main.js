@@ -327,7 +327,7 @@ class Esvewifi extends utils.Adapter {
               if(state.val == 'true' || state.val == 'false'){
                 this.setStatus(state.val);
               } else {
-                this.log.error('For "SetStatus" provide -> "true" or "false"')
+                this.log.debug('For "SetStatus" provide -> "true" or "false"')
               }
             }
         } else {
@@ -343,11 +343,11 @@ class Esvewifi extends utils.Adapter {
             if(response == 'S0_EVSE-WiFi is going to reboot now...'){
               self.log.info("Rebooted ESVE-Wifi Module")
             } else {
-              self.log.error("Could not performe doReboot()")
+              self.log.info("Could not performe doReboot()")
             }
           } else {
-            self.log.error("Check IP!")
-            self.stop();
+            self.log.debug("Check IP!")
+            //self.stop();
           }
       })
     }
@@ -359,14 +359,14 @@ class Esvewifi extends utils.Adapter {
       request({method: "GET", url}, function (error, response, result) {
           if(!error && response.statusCode == 200){
             if(result == 'E2_could not process - wrong parameter or EVSE-WiFi runs in always active mode'){
-              self.log.error("ESVE Running in Always Active Mode");
+              self.log.info("ESVE Running in Always Active Mode");
             } else {
-              self.log.error('Could not perform setStatus()')
+              self.log.info('Could not perform setStatus()')
             }
           }
           else {
-            self.log.error("Check IP!")
-            self.stop();
+            self.log.info("Check IP!")
+            //self.stop();
           }
       })
     }
@@ -379,11 +379,11 @@ class Esvewifi extends utils.Adapter {
           if(!error && response.statusCode == 200){
             if(result == 'S0_set current to given value'){
             } else {
-              self.log.error('Could not perform setCurrent()')
+              self.log.info('Could not perform setCurrent()')
             }
           } else {
-            self.log.error("Check IP!")
-            self.stop();
+            self.log.info("Check IP!")
+            //self.stop();
           }
       })
     }
@@ -404,8 +404,8 @@ class Esvewifi extends utils.Adapter {
               }
               self.log.info('getLog returnded: ' + result)
             } else {
-              self.log.error("Check IP!")
-              self.stop();
+              self.log.info("Check IP!")
+              //self.stop();
             }
         })
       }
@@ -440,8 +440,8 @@ class Esvewifi extends utils.Adapter {
                 self.setState(paramtersFolderName+'useMeter', parameterDataObj.list[0].useMeter, true)
               }
               else {
-                self.log.error("Check IP!")
-                self.stop();
+                self.log.info("Check IP!")
+                //self.stop();
               }
           })
     }
