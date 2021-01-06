@@ -19,6 +19,10 @@ SimpleESVE-WiFi: https://github.com/CurtRod/SimpleEVSE-WiFi
 Currently ther is a Bug in the SimpleESVE-Wifi. When using the API to get the Log when the Log is empty it can cause a crash on the wallbox which needs to be rebooted to fix. 
 Issue: https://github.com/CurtRod/SimpleEVSE-WiFi/issues/62
 
+Solution: When perceive problems change the configuration on the Adapter: 
+ > "Number of Logs to Show" set to 0. 
+Then no Logs will be requested.
+
 
 ## Paramter Description
 Parameter | Description
