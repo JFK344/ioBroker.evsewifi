@@ -15,6 +15,10 @@
 Transmitting data from an to the ESVE Wallbox.
 SimpleESVE-WiFi: https://github.com/CurtRod/SimpleEVSE-WiFi
 
+## Important Information:
+Currently ther is a Bug in the SimpleESVE-Wifi. When using the API to get the Log when the Log is empty it can cause a crash on the wallbox which needs to be rebooted to fix. 
+Issue: https://github.com/CurtRod/SimpleEVSE-WiFi/issues/62
+
 
 ## Paramter Description
 Parameter | Description
