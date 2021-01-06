@@ -1,6 +1,6 @@
 {
   "name": "iobroker.esvewifi",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Transmitting data from an to the ESVE Wallbox",
   "author": "JFK344 <info@jfk.rocks>",
   "homepage": "https://github.com/JFK344/ioBroker.esvewifi",
