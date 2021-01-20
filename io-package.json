@@ -1,6 +1,6 @@
 {
     "common": {
-        "name": "esvewifi",
+        "name": "evsewifi",
         "version": "1.0.0",
         "news": {
             "0.0.1": {
@@ -16,7 +16,7 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "esvewifi",
+        "title": "evsewifi",
         "titleLang": {
             "en": "esvewifi",
             "de": "esvewifi",
@@ -46,7 +46,7 @@
         ],
         "keywords": [
             "ESVE",
-            "esve-wifi",
+            "evse-wifi",
             "e-mobility",
             "electric-vehicles"
         ],
