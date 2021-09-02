@@ -11,7 +11,7 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
-class Esvewifi extends utils.Adapter {
+class Evsewifi extends utils.Adapter {
 
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
@@ -317,13 +317,13 @@ class Esvewifi extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-            if(id == 'esvewifi.'+this.instance+'.doReboot' && state.val == true){
+            if(id == 'evsewifi.'+this.instance+'.doReboot' && state.val == true){
                 this.doReboot();
             }
-            if(id == 'esvewifi.'+this.instance+'.setCurrent'){
+            if(id == 'evsewifi.'+this.instance+'.setCurrent'){
               this.setCurrent(state.val);
             }
-            if(id == 'esvewifi.'+this.instance+'.setStatus'){
+            if(id == 'evsewifi.'+this.instance+'.setStatus'){
               if(state.val == 'true' || state.val == 'false'){
                 this.setStatus(state.val);
               } else {
@@ -454,8 +454,8 @@ if (module.parent) {
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
 
-    module.exports = (options) => new Esvewifi(options);
+    module.exports = (options) => new Evsewifi(options);
 } else {
     // otherwise start the instance directly
-    new Esvewifi();
+    new Evsewifi();
 }
