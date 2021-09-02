@@ -56,7 +56,7 @@ class Evsewifi extends utils.Adapter {
             type: 'state',
             common: {
                 name: 'vehicleState',
-                type: 'string',
+                type: 'number',
                 role: 'indicator',
                 read: true,
                 write: false,
