@@ -1,19 +1,20 @@
 {
   "name": "iobroker.evsewifi",
   "version": "1.0.2",
-  "description": "Transmitting data from an to the ESVE Wallbox",
+  "description": "Transmitting data from an to the EVSE Wallbox",
   "author": "JFK344 <info@jfk.rocks>",
   "homepage": "https://github.com/JFK344/ioBroker.evsewifi",
   "license": "MIT",
   "keywords": [
-    "ESVE"
+    "EVSE"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JFK344/ioBroker.evsewifi.git"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.4.0"
+    "@iobroker/adapter-core": "^2.4.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "@iobroker/testing": "^2.4.0",
@@ -45,7 +46,7 @@
     "lint": "eslint"
   },
   "bugs": {
-    "url": "https://github.com/JFK344/ioBroker.esvewifi/issues"
+    "url": "https://github.com/JFK344/ioBroker.evsewifi/issues"
   },
   "directories": {
     "lib": "lib",

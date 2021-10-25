@@ -10,7 +10,7 @@ const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
-
+let updateInterval = null;
 class Evsewifi extends utils.Adapter {
 
     /**
@@ -31,14 +31,14 @@ class Evsewifi extends utils.Adapter {
      * Is called when databases are connected and adapter received configuration.
      */
     async onReady() {
-        this.log.info('ESVE Wifi Adapter Started! Instance Number: ' + this.instance)
-        this.log.info('ESVE IP: ' + this.config.ip);
+        this.log.info('EVSE Wifi Adapter Started! Instance Number: ' + this.instance);
+        this.log.info('EVSE IP: ' + this.config.ip);
         this.log.info('Refresh Interval: ' + this.config.refreshInterval);
         this.subscribeStates('*');
         const self = this;
-        var updateInterval = setInterval(function() {self.getParameters(); self.getLog();}, (self.config.refreshInterval*1000));
-        var paramtersFolderName = 'parameters.'
-        var logsFolderName = 'logs.'
+        const paramtersFolderName = 'parameters.';
+        const logsFolderName = 'logs.';
+        updateInterval = setInterval(function() {self.getParameters(); self.getLog();}, (self.config.refreshInterval*1000));
 
         await this.setObjectNotExistsAsync(paramtersFolderName+'MSG_Type', {
             type: 'state',
@@ -244,7 +244,7 @@ class Evsewifi extends utils.Adapter {
             native: {},
         });
 
-        for(var c=0; c < this.config.noLogsToShow; c++){
+        for(let c=0; c < this.config.noLogsToShow; c++){
             await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c, {
                 type: 'state',
                 common: {
@@ -321,14 +321,14 @@ class Evsewifi extends utils.Adapter {
                 this.doReboot();
             }
             if(id == 'evsewifi.'+this.instance+'.setCurrent'){
-              this.setCurrent(state.val);
+                this.setCurrent(state.val);
             }
             if(id == 'evsewifi.'+this.instance+'.setStatus'){
-              if(state.val == 'true' || state.val == 'false'){
-                this.setStatus(state.val);
-              } else {
-                this.log.debug('For "SetStatus" provide -> "true" or "false"')
-              }
+                if(state.val == 'true' || state.val == 'false'){
+                    this.setStatus(state.val);
+                } else {
+                    this.log.debug('For "SetStatus" provide -> "true" or "false"');
+                }
             }
         } else {
             this.log.debug(`state ${id} deleted`);
@@ -336,118 +336,117 @@ class Evsewifi extends utils.Adapter {
     }
 
     async doReboot(){
-      const url = 'http://' + this.config.ip + '/doReboot?reboot=true';
-      const self = this;
-      request({method: "GET", url}, function (error, response, result) {
-          if(!error && response.statusCode == 200){
-            if(response == 'S0_EVSE-WiFi is going to reboot now...'){
-              self.log.info("Rebooted ESVE-Wifi Module")
+        const url = 'http://' + this.config.ip + '/doReboot?reboot=true';
+        const self = this;
+        request({method: 'GET', url}, function (error, response) {
+            if(!error && response.statusCode == 200){
+                if(response == 'S0_EVSE-WiFi is going to reboot now...'){
+                    self.log.info('Rebooted EVSE-Wifi Module');
+                } else {
+                    self.log.warn('Could not performe doReboot()');
+                }
             } else {
-              self.log.info("Could not performe doReboot()")
-            }
-          } else {
-            self.log.debug("Check IP!")
+                self.log.debug('Check IP!');
             //self.stop();
-          }
-      })
+            }
+        });
     }
 
 
     async setStatus(status){
-      const url = 'http://' + this.config.ip + '/setStatus?active='+status;
-      const self = this;
-      request({method: "GET", url}, function (error, response, result) {
-          if(!error && response.statusCode == 200){
-            if(result == 'E2_could not process - wrong parameter or EVSE-WiFi runs in always active mode'){
-              self.log.info("ESVE Running in Always Active Mode");
-            } else {
-              self.log.info('Could not perform setStatus()')
+        const url = 'http://' + this.config.ip + '/setStatus?active='+status;
+        const self = this;
+        request({method: 'GET', url}, function (error, response, result) {
+            if(!error && response.statusCode == 200){
+                if(result == 'E2_could not process - wrong parameter or EVSE-WiFi runs in always active mode'){
+                    self.log.info('EVSE Running in Always Active Mode');
+                } else {
+                    self.log.warn('Could not perform setStatus()');
+                }
             }
-          }
-          else {
-            self.log.info("Check IP!")
+            else {
+                self.log.warn('Check IP!');
             //self.stop();
-          }
-      })
+            }
+        });
     }
 
 
     async setCurrent(current){
-      const url = 'http://' + this.config.ip + '/setCurrent?current='+current;
-      const self = this;
-      request({method: "GET", url}, function (error, response, result) {
-          if(!error && response.statusCode == 200){
-            if(result == 'S0_set current to given value'){
+        const url = 'http://' + this.config.ip + '/setCurrent?current='+current;
+        const self = this;
+        request({method: 'GET', url}, function (error, response, result) {
+            if(!error && response.statusCode == 200){
+                if(result !== 'S0_set current to given value'){
+                    self.log.warn('Could not perform setCurrent()');
+                }
             } else {
-              self.log.info('Could not perform setCurrent()')
-            }
-          } else {
-            self.log.info("Check IP!")
+                self.log.warn('Check IP!');
             //self.stop();
-          }
-      })
+            }
+        });
     }
 
-//noLogsToShow
+    //noLogsToShow
     async getLog(){
-      var logsFolderName = 'logs.'
-      const url = 'http://' + this.config.ip + '/getLog';
-      const self = this;
-      if (this.config.noLogsToShow != 0){
-        request({method: "GET", url}, function (error, response, result) {
-            if(!error && response.statusCode == 200){
-              var logObj = JSON.parse(result)
-              for(c=0; c < logObj.list.length(); c++){
-                if(c < self.config.noLogsToShow){
-                  self.setState(logsFolderName+'Log_'+c, logObj.list[c], true)
+        const logsFolderName = 'logs.';
+        const url = 'http://' + this.config.ip + '/getLog';
+        const self = this;
+        if (this.config.noLogsToShow != 0){
+            request({method: 'GET', url}, function (error, response, result) {
+                if(!error && response.statusCode == 200){
+                    const logObj = JSON.parse(result);
+                    for(let c=0; c < logObj.list.length; c++){
+                        if(c < self.config.noLogsToShow){
+                            self.setState(logsFolderName+'Log_'+c, JSON.stringify(logObj.list[c]), true);
+                        }
+                    }
+                    self.log.debug('getLog returned: ' + result);
+                } else {
+                    self.log.warn('Check IP!');
+                    //self.stop();
                 }
-              }
-              self.log.info('getLog returnded: ' + result)
-            } else {
-              self.log.info("Check IP!")
-              //self.stop();
-            }
-        })
-      }
+            });
+        }
     }
 
     async getParameters() {
-          const url = 'http://' + this.config.ip + '/getParameters';
-          this.log.debug(url);
-          const self = this;
-          request({method: "GET", url}, function (error, response, result) {
-              //self.log.info("Response: " + response.statusCode)
-              if(!error && response.statusCode == 200){
-                self.log.debug("Parameter Message: " + result);
-                var parameterDataObj = JSON.parse(result)
-                var paramtersFolderName = 'parameters.'
-                self.setState(paramtersFolderName+'MSG_Type', parameterDataObj.type, true)
-                self.setState(paramtersFolderName+'vehicleState', parameterDataObj.list[0].vehicleState, true)
-                self.setState(paramtersFolderName+'evseState', parameterDataObj.list[0].evseState, true)
-                self.setState(paramtersFolderName+'maxCurrent', parameterDataObj.list[0].maxCurrent, true)
-                self.setState(paramtersFolderName+'actualCurrent', parameterDataObj.list[0].actualCurrent, true)
-                self.setState(paramtersFolderName+'actualPower', parameterDataObj.list[0].actualPower, true)
-                self.setState(paramtersFolderName+'duration', parameterDataObj.list[0].duration, true)
-                self.setState(paramtersFolderName+'alwaysActive', parameterDataObj.list[0].alwaysActive, true)
-                self.setState(paramtersFolderName+'lastActionUser', parameterDataObj.list[0].lastActionUser, true)
-                self.setState(paramtersFolderName+'lastActionUID', parameterDataObj.list[0].lastActionUID, true)
-                self.setState(paramtersFolderName+'energy', parameterDataObj.list[0].energy, true)
-                self.setState(paramtersFolderName+'mileage', parameterDataObj.list[0].mileage, true)
-                self.setState(paramtersFolderName+'meterReading', parameterDataObj.list[0].meterReading, true)
-                self.setState(paramtersFolderName+'currentP1', parameterDataObj.list[0].currentP1, true)
-                self.setState(paramtersFolderName+'currentP2', parameterDataObj.list[0].currentP2, true)
-                self.setState(paramtersFolderName+'currentP3', parameterDataObj.list[0].currentP3, true)
-                self.setState(paramtersFolderName+'useMeter', parameterDataObj.list[0].useMeter, true)
-              }
-              else {
-                self.log.info("Check IP!")
+        const url = 'http://' + this.config.ip + '/getParameters';
+        this.log.debug(url);
+        const self = this;
+        request({method: 'GET', url}, function (error, response, result) {
+            //self.log.info("Response: " + response.statusCode)
+            if(!error && response.statusCode == 200){
+                self.log.debug('Parameter Message: ' + result);
+                const parameterDataObj = JSON.parse(result);
+                const paramtersFolderName = 'parameters.';
+                self.setState(paramtersFolderName+'MSG_Type', parameterDataObj.type, true);
+                self.setState(paramtersFolderName+'vehicleState', parameterDataObj.list[0].vehicleState, true);
+                self.setState(paramtersFolderName+'evseState', parameterDataObj.list[0].evseState, true);
+                self.setState(paramtersFolderName+'maxCurrent', parameterDataObj.list[0].maxCurrent, true);
+                self.setState(paramtersFolderName+'actualCurrent', parameterDataObj.list[0].actualCurrent, true);
+                self.setState(paramtersFolderName+'actualPower', parameterDataObj.list[0].actualPower, true);
+                self.setState(paramtersFolderName+'duration', parameterDataObj.list[0].duration, true);
+                self.setState(paramtersFolderName+'alwaysActive', parameterDataObj.list[0].alwaysActive, true);
+                self.setState(paramtersFolderName+'lastActionUser', parameterDataObj.list[0].lastActionUser, true);
+                self.setState(paramtersFolderName+'lastActionUID', parameterDataObj.list[0].lastActionUID, true);
+                self.setState(paramtersFolderName+'energy', parameterDataObj.list[0].energy, true);
+                self.setState(paramtersFolderName+'mileage', parameterDataObj.list[0].mileage, true);
+                self.setState(paramtersFolderName+'meterReading', parameterDataObj.list[0].meterReading, true);
+                self.setState(paramtersFolderName+'currentP1', parameterDataObj.list[0].currentP1, true);
+                self.setState(paramtersFolderName+'currentP2', parameterDataObj.list[0].currentP2, true);
+                self.setState(paramtersFolderName+'currentP3', parameterDataObj.list[0].currentP3, true);
+                self.setState(paramtersFolderName+'useMeter', parameterDataObj.list[0].useMeter, true);
+            }
+            else {
+                self.log.warn('Check IP!');
                 //self.stop();
-              }
-          })
+            }
+        });
     }
 }
 
-
+// @ts-ignore parent is a valid property on module
 if (module.parent) {
     // Export the constructor in compact mode
     /**
