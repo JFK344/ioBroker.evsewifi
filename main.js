@@ -270,6 +270,18 @@ class Evsewifi extends utils.Adapter {
             native: {},
         });
 
+        await this.setObjectNotExistsAsync('interruptCp', {
+            type: 'state',
+            common: {
+                name: 'setCurrent',
+                type: 'number',
+                role: 'number',
+                read: true,
+                write: true,
+            },
+            native: {},
+        });
+
         await this.setObjectNotExistsAsync('setStatus', {
             type: 'state',
             common: {
@@ -295,8 +307,6 @@ class Evsewifi extends utils.Adapter {
         });
     }
 
-
-
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
      * @param {() => void} callback
@@ -309,6 +319,7 @@ class Evsewifi extends utils.Adapter {
             callback();
         }
     }
+    
     /**
      * Is called if a subscribed state changes
      * @param {string} id
@@ -322,6 +333,9 @@ class Evsewifi extends utils.Adapter {
             }
             if(id == 'evsewifi.'+this.instance+'.setCurrent'){
               this.setCurrent(state.val);
+            }
+            if(id == 'evsewifi.'+this.instance+'.interruptCp' && state.val == true){
+                this.interruptCp(state.val?state.val:3000);
             }
             if(id == 'evsewifi.'+this.instance+'.setStatus'){
               if(state.val == 'true' || state.val == 'false'){
@@ -352,7 +366,6 @@ class Evsewifi extends utils.Adapter {
       })
     }
 
-
     async setStatus(status){
       const url = 'http://' + this.config.ip + '/setStatus?active='+status;
       const self = this;
@@ -371,7 +384,6 @@ class Evsewifi extends utils.Adapter {
       })
     }
 
-
     async setCurrent(current){
       const url = 'http://' + this.config.ip + '/setCurrent?current='+current;
       const self = this;
@@ -388,6 +400,22 @@ class Evsewifi extends utils.Adapter {
       })
     }
 
+    async interruptCp(duration){
+        const url = 'http://' + this.config.ip + '/interruptCp?duration='+duration;
+        const self = this;
+        request({method: "GET", url}, function (error, response, result) {
+            if(!error && response.statusCode == 200){
+              if(result == 'S0_set current to given value'){
+              } else {
+                self.log.info("Could not perform interruptCp(): `result`")
+              }
+            } else {
+              self.log.info("Check IP!")
+              //self.stop();
+            }
+        })
+      }
+  
 //noLogsToShow
     async getLog(){
       var logsFolderName = 'logs.'

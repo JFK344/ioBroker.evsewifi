@@ -45,6 +45,14 @@ currentP3 | actual current in A (phase 3)
 useMeter | energy meter is configured in EVSE-WiFi (true/false)
 
 ## Changelog
+
+### 1.0.3
+* (git-kick) Added interruptCp()
+
+### 1.0.2
+
+### 1.0.1
+
 ### 1.0.0
 * (JFK344) First release
 
