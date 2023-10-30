@@ -8,8 +8,7 @@
 const request = require('request');
 const utils = require('@iobroker/adapter-core');
 
-// Load your modules here, e.g.:
-// const fs = require("fs");
+const logAttributes = ['uid', 'username', 'timestamp', 'duration', 'energy', 'price', 'reading', 'rEnd'];
 
 class Evsewifi extends utils.Adapter {
 
@@ -245,17 +244,32 @@ class Evsewifi extends utils.Adapter {
         });
 
         for(var c=0; c < this.config.noLogsToShow; c++){
-            await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c, {
-                type: 'state',
-                common: {
-                    name: 'Log_'+c,
-                    type: 'string',
-                    role: 'string',
-                    read: true,
-                    write: false,
-                },
-                native: {},
-            });
+            for(const a of logAttributes.slice(0,2)) {
+                await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c+'.'+a, {
+                    type: 'state',
+                    common: {
+                        name: a,
+                        type: 'string',
+                        role: 'string',
+                        read: true,
+                        write: false,
+                    },
+                    native: {},
+                });    
+            }
+            for(const a of logAttributes.slice(2)) {
+                await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c+'.'+a, {
+                    type: 'state',
+                    common: {
+                        name: a,
+                        type: 'number',
+                        role: 'number',
+                        read: true,
+                        write: false,
+                    },
+                    native: {},
+                });    
+            }
         }
 
         await this.setObjectNotExistsAsync('setCurrent', {
@@ -416,7 +430,6 @@ class Evsewifi extends utils.Adapter {
         })
       }
   
-//noLogsToShow
     async getLog(){
       var logsFolderName = 'logs.'
       const url = 'http://' + this.config.ip + '/getLog';
@@ -424,15 +437,18 @@ class Evsewifi extends utils.Adapter {
       if (this.config.noLogsToShow != 0){
         request({method: "GET", url}, function (error, response, result) {
             if(!error && response.statusCode == 200){
-              var logObj = JSON.parse(result)
-              for(c=0; c < logObj.list.length(); c++){
+              var logObj = JSON.parse(result);
+              for(let c=0; c < Object.keys(logObj.list).length; c++){
                 if(c < self.config.noLogsToShow){
-                  self.setState(logsFolderName+'Log_'+c, logObj.list[c], true)
+                  // self.setState(logsFolderName+'Log_'+c, JSON.stringify(logObj.list[c], null, 2), true)
+                  for(const a of logAttributes) {
+                    self.setState(logsFolderName+'Log_'+c+'.'+a, logObj.list[c][a], true);
+                  }
                 }
               }
-              self.log.info('getLog returnded: ' + result)
+              self.log.debug('getLog returned: ' + result)
             } else {
-              self.log.info("Check IP!")
+              self.log.error("Check IP!")
               //self.stop();
             }
         })

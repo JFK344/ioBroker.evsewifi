@@ -48,6 +48,7 @@ useMeter | energy meter is configured in EVSE-WiFi (true/false)
 
 ### 1.0.3
 * (git-kick) Added interruptCp()
+* (git-kick) Fixed getLog()
 
 ### 1.0.2
 
