@@ -2,17 +2,17 @@
 'use strict';
 
 systemDictionary = {
-    'esvewifi adapter settings': {
-        'en': 'Adapter settings for esvewifi',
-        'de': 'Adaptereinstellungen für esvewifi',
-        'ru': 'Настройки адаптера для esvewifi',
-        'pt': 'Configurações do adaptador para esvewifi',
-        'nl': 'Adapterinstellingen voor esvewifi',
-        'fr': "Paramètres d'adaptateur pour esvewifi",
-        'it': "Impostazioni dell'adattatore per esvewifi",
-        'es': 'Ajustes del adaptador para esvewifi',
-        'pl': 'Ustawienia adaptera dla esvewifi',
-        'zh-cn': 'esvewifi的适配器设置'
+    'evsewifi adapter settings': {
+        'en': 'Adapter settings for evsewifi',
+        'de': 'Adaptereinstellungen für evsewifi',
+        'ru': 'Настройки адаптера для evsewifi',
+        'pt': 'Configurações do adaptador para evsewifi',
+        'nl': 'Adapterinstellingen voor evsewifi',
+        'fr': "Paramètres d'adaptateur pour evsewifi",
+        'it': "Impostazioni dell'adattatore per evsewifi",
+        'es': 'Ajustes del adaptador para evsewifi',
+        'pl': 'Ustawienia adaptera dla evsewifi',
+        'zh-cn': 'evsewifi的适配器设置'
     },
     'ip': {
         'en': 'IP',

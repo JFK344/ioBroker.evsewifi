@@ -1,4 +1,4 @@
-![Logo](admin/esvewifi.png)
+![Logo](admin/evsewifi.png)
 # ioBroker.evsewifi
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.esvewifi.svg)](https://www.npmjs.com/package/iobroker.esvewifi)
@@ -12,11 +12,11 @@
 
 ## evSewifi adapter for ioBroker
 
-Transmitting data from an to the ESVE Wallbox.
+Transmitting data from an to the EVSE Wallbox.
 SimpleEVSE-WiFi: https://github.com/CurtRod/SimpleEVSE-WiFi
 
 ## Important Information:
-Currently ther is a Bug in the SimpleESVE-Wifi. When using the API to get the Log when the Log is empty it can cause a crash on the wallbox which needs to be rebooted to fix. 
+Currently ther is a Bug in the SimpleEVSE-Wifi. When using the API to get the Log when the Log is empty it can cause a crash on the wallbox which needs to be rebooted to fix. 
 Issue: https://github.com/CurtRod/SimpleEVSE-WiFi/issues/62
 
 Solution: When perceive problems change the configuration on the Adapter: 

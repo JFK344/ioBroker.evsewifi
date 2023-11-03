@@ -18,34 +18,34 @@
         },
         "title": "evsewifi",
         "titleLang": {
-            "en": "esvewifi",
-            "de": "esvewifi",
-            "ru": "Esvewifi",
-            "pt": "esvewifi",
-            "nl": "esvewifi",
-            "fr": "esvewifi",
-            "it": "esvewifi",
-            "es": "esvewifi",
-            "pl": "esvewifi",
-            "zh-cn": "esvewifi"
+            "en": "evsewifi",
+            "de": "evsewifi",
+            "ru": "Evsewifi",
+            "pt": "evsewifi",
+            "nl": "evsewifi",
+            "fr": "evsewifi",
+            "it": "evsewifi",
+            "es": "evsewifi",
+            "pl": "evsewifi",
+            "zh-cn": "evsewifi"
         },
         "desc": {
-            "en": "Transmitting data from an to the ESVE Wallbox",
-            "de": "Übertragen von Daten von einer zur ESVE Wallbox",
-            "ru": "Передача данных из ESVE Wallbox",
-            "pt": "Transmitindo dados de um para a ESVE Wallbox",
-            "nl": "Gegevens verzenden van een naar de ESVE-wallbox",
-            "fr": "Transmission de données depuis un vers la Wallbox ESVE",
-            "it": "Trasmissione di dati da un a ESVE Wallbox",
-            "es": "Transmisión de datos de un Wallbox a ESVE",
-            "pl": "Przesyłanie danych z do ESVE Wallbox",
-            "zh-cn": "将数据从传输到ESVE Wallbox"
+            "en": "Transmitting data from an to the EVSE Wallbox",
+            "de": "Übertragen von Daten von einer zur EVSE Wallbox",
+            "ru": "Передача данных из EVSE Wallbox",
+            "pt": "Transmitindo dados de um para a EVSE Wallbox",
+            "nl": "Gegevens verzenden van een naar de EVSE-wallbox",
+            "fr": "Transmission de données depuis un vers la Wallbox EVSE",
+            "it": "Trasmissione di dati da un a EVSE Wallbox",
+            "es": "Transmisión de datos de un Wallbox a EVSE",
+            "pl": "Przesyłanie danych z do EVSE Wallbox",
+            "zh-cn": "将数据从传输到EVSE Wallbox"
         },
         "authors": [
             "JFK344 <info@jfk.rocks>"
         ],
         "keywords": [
-            "ESVE",
+            "EVSE",
             "evse-wifi",
             "e-mobility",
             "electric-vehicles"
