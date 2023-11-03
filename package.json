@@ -1,12 +1,14 @@
 {
   "name": "iobroker.evsewifi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Transmitting data from an to the ESVE Wallbox",
   "author": "JFK344 <info@jfk.rocks>",
   "homepage": "https://github.com/JFK344/ioBroker.evsewifi",
   "license": "MIT",
   "keywords": [
-    "ESVE"
+    "EVSE",
+    "Wifi",
+    "Wallbox"
   ],
   "repository": {
     "type": "git",

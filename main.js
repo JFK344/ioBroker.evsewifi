@@ -10,6 +10,12 @@ const utils = require('@iobroker/adapter-core');
 
 const logAttributes = ['uid', 'username', 'timestamp', 'duration', 'energy', 'price', 'reading', 'rEnd'];
 
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 1)) {s = "0" + s;}
+    return s;
+}
+
 class Evsewifi extends utils.Adapter {
 
     /**
@@ -244,8 +250,9 @@ class Evsewifi extends utils.Adapter {
         });
 
         for(var c=0; c < this.config.noLogsToShow; c++){
+            const cString = (c).pad(String(this.config.noLogsToShow-1).length);
             for(const a of logAttributes.slice(0,2)) {
-                await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c+'.'+a, {
+                await this.setObjectNotExistsAsync(logsFolderName+'log_'+cString+'.'+a, {
                     type: 'state',
                     common: {
                         name: a,
@@ -258,7 +265,7 @@ class Evsewifi extends utils.Adapter {
                 });    
             }
             for(const a of logAttributes.slice(2)) {
-                await this.setObjectNotExistsAsync(logsFolderName+'Log_'+c+'.'+a, {
+                await this.setObjectNotExistsAsync(logsFolderName+'log_'+cString+'.'+a, {
                     type: 'state',
                     common: {
                         name: a,
@@ -287,7 +294,7 @@ class Evsewifi extends utils.Adapter {
         await this.setObjectNotExistsAsync('interruptCp', {
             type: 'state',
             common: {
-                name: 'setCurrent',
+                name: 'interruptCp',
                 type: 'number',
                 role: 'number',
                 read: true,
@@ -438,12 +445,11 @@ class Evsewifi extends utils.Adapter {
         request({method: "GET", url}, function (error, response, result) {
             if(!error && response.statusCode == 200){
               var logObj = JSON.parse(result);
-              for(let c=0; c < Object.keys(logObj.list).length; c++){
-                if(c < self.config.noLogsToShow){
-                  // self.setState(logsFolderName+'Log_'+c, JSON.stringify(logObj.list[c], null, 2), true)
-                  for(const a of logAttributes) {
-                    self.setState(logsFolderName+'Log_'+c+'.'+a, logObj.list[c][a], true);
-                  }
+              const l = Object.keys(logObj.list).length;
+              for(let c=0; c < l && c < self.config.noLogsToShow; c++){
+                const cString = (c).pad(String(self.config.noLogsToShow-1).length);
+                for(const a of logAttributes) {
+                  self.setState(logsFolderName+'log_'+cString+'.'+a, logObj.list[l-1-c][a], true); // latest entry first
                 }
               }
               self.log.debug('getLog returned: ' + result)
