@@ -55,7 +55,7 @@
         "main": "main.js",
         "icon": "evsewifi.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/JFK344/ioBroker.esvewifi/master/admin/esvewifi.png",
+        "extIcon": "https://raw.githubusercontent.com/JFK344/ioBroker.esvewifi/master/admin/evsewifi.png",
         "readme": "https://github.com/JFK344/ioBroker.esvewifi/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
