@@ -8,7 +8,7 @@
 [![Dependency Status](https://img.shields.io/david/JFK344/iobroker.esvewifi.svg)](https://david-dm.org/JFK344/iobroker.esvewifi)
 [![Known Vulnerabilities](https://snyk.io/test/github/JFK344/ioBroker.esvewifi/badge.svg)](https://snyk.io/test/github/JFK344/ioBroker.esvewifi)
 
-[![NPM](https://nodei.co/npm/iobroker.esvewifi.png?downloads=true)](https://nodei.co/npm/iobroker.esvewifi/)
+[![NPM](https://nodei.co/npm/iobroker.evsewifi.png?downloads=true)](https://nodei.co/npm/iobroker.esvewifi/)
 
 ## evSewifi adapter for ioBroker
 
